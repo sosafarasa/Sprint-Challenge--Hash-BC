@@ -23,9 +23,14 @@ def proof_of_work(last_proof):
 
     start = timer()
 
+    last = f'{last_proof}'.encode()
+    last_h = hashlib.sha256(last).hexdigest()
+
     print("Searching for next proof")
-    proof = 0
-    #  TODO: Your code here
+    proof = 9999999
+    
+    while valid(last_h, proof) is False:
+        proof +=7
 
     print("Proof found: " + str(proof) + " in " + str(timer() - start))
     return proof
